@@ -40,6 +40,9 @@ $RECYCLE.BIN/
 
 #extra
 
+#dist
+/dist
+
 
 /.vscode
 
