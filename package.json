@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"gulp build && node index.js",
+    "start": "gulp build && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,13 +18,14 @@
   },
   "homepage": "https://github.com/RajeshVerma7/nvOffline#readme",
   "devDependencies": {
+
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "express": "^4.15.3",
     "browserify": "^13.1.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "gulp-uglify": "^2.0.0"
-  },
-  "dependencies": {
-    "gulp": "^3.9.1",
-    "express": "^4.15.3"
   }
 }
