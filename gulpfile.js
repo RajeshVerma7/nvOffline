@@ -6,7 +6,7 @@ var uglify = require('gulp-uglify');
 
 
 var bundler = browserify({
-    entries: ['./offline.js'],
+    entries: ['./offlineNew.js'],
     standalone: 'nvOffline',
     debug: true,
 });
@@ -14,10 +14,10 @@ var bundler = browserify({
 gulp.task('module', function() {
         return bundler
             .bundle()
-            .pipe(source('offline.js'))
+            .pipe(source('offlineNew.js'))
             .pipe(buffer())
-            .pipe(uglify({
-                compress: false,
-            }))
+            // .pipe(uglify({
+            //     compress: false,
+            // }))
             .pipe(gulp.dest('./dist/'));
 });
