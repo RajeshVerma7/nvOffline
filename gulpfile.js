@@ -11,13 +11,13 @@ var bundler = browserify({
     debug: true,
 });
 
-gulp.task('module', function() {
+gulp.task('build', function() {
         return bundler
             .bundle()
             .pipe(source('offlineNew.js'))
             .pipe(buffer())
-            // .pipe(uglify({
-            //     compress: false,
-            // }))
+            .pipe(uglify({
+                compress: false,
+            }))
             .pipe(gulp.dest('./dist/'));
 });
