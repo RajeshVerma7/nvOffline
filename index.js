@@ -8,7 +8,6 @@ app.get('/', function(req, res) {
 })
 
 app.get('/js/:name', function(req, res) {
-
     var options = {
         root: __dirname + '/dist/',
         headers: {
