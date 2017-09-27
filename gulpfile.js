@@ -16,8 +16,8 @@ gulp.task('build', function() {
             .bundle()
             .pipe(source('offlineNew.js'))
             .pipe(buffer())
-            .pipe(uglify({
-                compress: false,
-            }))
+            // .pipe(uglify({
+            //     compress: false,
+            // }))
             .pipe(gulp.dest('./dist/'));
 });
