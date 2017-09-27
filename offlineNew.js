@@ -4,47 +4,60 @@ var csstext = require('./css.js');
 function offline(obj) {
     var _posn;
     var _elem;
+    var _delay;
+    var _allposn = ['topLeft', 'topRight', 'topMiddel', 'bottomLeft', 'bottomRight', 'bottomMiddel'];
     var _default = {
-        pos:'bottom_left'
+        position: 'topMiddel',
+        id: 'NetworkStaus',
+        delay: 1000
+    }
+    function validateObj(obj) {
+        if (!_allposn.includes(obj.position)) {
+            obj.position = _default.position;
+        }
+        if (!obj.id || !obj.id.trim()) {
+            obj.id = _default.id;
+        }
+        if (!obj.delay) {
+            obj.delay = _default.delay;
+        }
+        return obj;
     }
     if (typeof obj === 'object') {
-        _posn = obj.position;
-        _elem = obj.id;
-        if (!_posn && !_elem) {
+        var newObj = validateObj(obj);
+        _posn = newObj.position;
+        _elem = newObj.id;
+        _delay = newObj.delay;
+        if (!_posn && !_elem && _allposn.includes(_posn)) {
             throw new Error("missing parameters...");
         } else {
             init();
         }
     }
 
+    function removeStyle() {
+        document.getElementById(_elem).removeAttribute('style');
+    }
     function onlineMsg() {
         var element = document.getElementById(_elem);
         element.querySelector('.__nvJs--msgBlock-selector').innerText = 'You Are online';
-        // element.setAttribute('class', 'offline-ui offline-ui-up offline-ui-up-5s');
-        // if(_posn === 'top'){
-        //     element.setAttribute('class', 'offline-ui offline-ui-up offline-ui-up-5s');
-        // }else if(_posn === 'bottom'){
-        //     element.setAttribute('class', 'offline-ui offline-ui-up offline-ui-down');
-        // }
+        element.querySelector('.__nvJs--msgBlock-selector').classList.add('green');
+        window.setTimeout(removeStyle, _delay);
     }
     function offlineMsg() {
         var element = document.getElementById(_elem);
         element.querySelector('.__nvJs--msgBlock-selector').innerText = 'You Are offline';
-        // element.removeAttribute('class');
-        // element.setAttribute('class', 'offline-ui offline-ui-down');
-        // if(_posn === 'top'){
-        //     element.setAttribute('class', 'offline-ui offline-ui-down');
-        // }else if(_posn === 'bottom'){
-        //      element.setAttribute('class', 'offline-ui offline-ui-up offline-ui-up-5s');
-        // }
+        element.querySelector('.__nvJs--msgBlock-selector').classList.remove('green');
+        element.style = 'transform:none; !important';
     }
     function createElement() {
         var containerDiv = document.createElement('div');
         containerDiv.id = _elem;
         containerDiv.classList.add('__nv--msgContainer');
         containerDiv.classList.add('__nvJs--msgContainer-selector');
-        containerDiv.classList.add('__nvPostion-top');
-        // containerDiv.style = _posn + ": 0px;";
+        if (_allposn.includes(_posn)) {
+            containerDiv.classList.add('__nvPostion-' + _posn);
+        }
         var innerDiv = document.createElement('div');
         innerDiv.classList.add('__nv-msgBlock');
         innerDiv.classList.add('__nvJs--msgBlock-selector');
