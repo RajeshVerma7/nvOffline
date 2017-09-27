@@ -20,6 +20,7 @@ app.get('/js/:name', function(req, res) {
     res.sendFile(fileName, options, function(err) {
         if (err) {
             console.log(err);
+            res.end();
         }
     });
 });
