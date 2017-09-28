@@ -4,7 +4,7 @@ var csstext = require('./css.js');
 function offline(obj) {
     var _options, _allposn = ['topLeft', 'topRight', 'topMiddle', 'bottomLeft', 'bottomRight', 'bottomMiddle'];
     var _default = {
-        position: 'topMiddel',
+        position: 'topMiddle',
         id: 'NetworkStaus',
         delay: 1000,
         onlineMsg: 'You Are online',
